@@ -76,3 +76,4 @@ DerivedDataCache/*
 
 # Unreal Engine Content 폴더 무시
 Content/
+Plugins/
