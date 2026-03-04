@@ -7,6 +7,8 @@
 ACLASH_BaseCharacter::ACLASH_BaseCharacter()
 {
 	PrimaryActorTick.bCanEverTick = true;
+
+	GetMesh()->bRenderCustomDepth = true;
 }
 
 // Called when the game starts or when spawned
