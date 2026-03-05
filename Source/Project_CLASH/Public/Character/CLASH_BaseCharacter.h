@@ -4,10 +4,15 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "AbilitySystemInterface.h"
 #include "CLASH_BaseCharacter.generated.h"
 
+class UCLASH_AbilitySystemComponent;
+class UCLASH_AttributeSet_Basic;
+class UCLASH_AbilitySystemConfig;
+
 UCLASS()
-class PROJECT_CLASH_API ACLASH_BaseCharacter : public ACharacter
+class PROJECT_CLASH_API ACLASH_BaseCharacter : public ACharacter, public IAbilitySystemInterface
 {
 	GENERATED_BODY()
 
@@ -20,4 +25,23 @@ public:
 protected:
 	virtual void BeginPlay() override;
 	virtual void PossessedBy(AController* NewController) override;
+
+/* =========================
+ * GAS
+* ========================= */
+public:
+	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
+
+protected:
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "GAS|ASC")
+	TObjectPtr<UCLASH_AbilitySystemComponent> ClashASC;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "GAS|AttributeSet")
+	TObjectPtr<UCLASH_AttributeSet_Basic> BasicAttributeSet;
+
+private:
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "GAS|DataAsset", meta = (AllowPrivateAccess = "true"))
+	TSoftObjectPtr<UCLASH_AbilitySystemConfig> AbilitySystemConfig;
+
+	void InitAbilitySystem();
 };

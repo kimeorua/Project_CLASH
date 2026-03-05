@@ -35,10 +35,10 @@ private:
 * ========================= */
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera|SpringArm", meta = (AllowPrivateAccess = "true"))
-	USpringArmComponent* SpringArm;
+	TObjectPtr<USpringArmComponent> SpringArm;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera|Camera", meta = (AllowPrivateAccess = "true"))
-	UCameraComponent* Camera;
+	TObjectPtr<UCameraComponent> Camera;
 
 /* =========================
  * MovementSpeed
@@ -54,7 +54,7 @@ protected:
 
 private:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "DataAsset|InputDataAsset", meta = (AllowPrivateAccess = "true"))
-	UCLASH_InputConfig* InputConfig;
+	TObjectPtr<UCLASH_InputConfig> InputConfig;
 
 	void InputMove(const FInputActionValue& InputActionValue);
 	void InputLook(const FInputActionValue& InputActionValue);

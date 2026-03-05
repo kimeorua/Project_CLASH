@@ -17,7 +17,7 @@ struct FClashInputActionConfig
     GENERATED_BODY()
 
     UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-    UInputAction* InputAction = nullptr;
+    TObjectPtr<UInputAction> InputAction = nullptr;
 
     UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
     FGameplayTag InputTag;
@@ -41,7 +41,7 @@ public:
     TArray<FClashInputActionConfig> AbilityInputActions;
 
     UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-    UInputMappingContext* DefaultMappingContext;
+    TObjectPtr<UInputMappingContext> DefaultMappingContext;
 
     UInputAction* FindNativeInputActionByTag(const FGameplayTag& InputTag) const;
 };

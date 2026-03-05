@@ -7,6 +7,7 @@
 
 #include "Component/Input/CLASH_EnhancedInputComponent.h"
 #include "DataAsset/Input/CLASH_InputConfig.h"
+#include "GAS/CLASH_AbilitySystemComponent.h"
 
 #include "CLASH_GameplayTag.h"
 
@@ -111,10 +112,13 @@ void ACLASH_PlayerCharacter::InputLook(const FInputActionValue& InputActionValue
 
 void ACLASH_PlayerCharacter::InputAbilityInputPressed(FGameplayTag InInputTag)
 {
+	if (!ClashASC) { return; }
+	ClashASC->OnAbilityInputPressed(InInputTag);
 	//Ability 작동;
 }
 
 void ACLASH_PlayerCharacter::InputAbilityInputReleased(FGameplayTag InInputTag)
 {
+	ClashASC->OnAbilityInputReleased(InInputTag);
 	//Ability 취소 or 종료
 }
