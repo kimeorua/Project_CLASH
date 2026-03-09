@@ -18,7 +18,10 @@ public class Project_CLASH : ModuleRules
             "GameplayTasks",
             "AnimGraphRuntime",
             "AIModule",
-            "MotionWarping"});
+            "MotionWarping",
+			"UMG",
+			"CommonUI", 
+			"CommonInput"});
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
 
