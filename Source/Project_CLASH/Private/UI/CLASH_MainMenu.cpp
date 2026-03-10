@@ -17,8 +17,6 @@ void UCLASH_MainMenu::NativeConstruct()
 void UCLASH_MainMenu::OnStartButtonClicked()
 {
 	UUserWidget::RemoveFromParent();
-
-	DebugHelper::Print("Game Start");
 }
 
 void UCLASH_MainMenu::OnQuitButtonClicked()

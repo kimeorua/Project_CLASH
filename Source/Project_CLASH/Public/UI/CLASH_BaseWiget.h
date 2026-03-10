@@ -13,10 +13,16 @@ class PROJECT_CLASH_API UCLASH_BaseWiget : public UCommonActivatableWidget
 {
 	GENERATED_BODY()
 
+public:
+	UFUNCTION(BlueprintPure)
+	APlayerController* GetOwnerPlayerController() const;
+
 protected:
 	UPROPERTY()
 	TObjectPtr<APlayerController> OwnerPC;
 
 	virtual void NativeOnInitialized() override;
 	virtual void NativeConstruct() override;
+	virtual void NativeOnActivated() override;
+	virtual void NativeOnDeactivated() override;
 };

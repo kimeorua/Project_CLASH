@@ -4,12 +4,13 @@
 
 #include "CoreMinimal.h"
 #include "UI/CLASH_BaseWiget.h"
+#include "UI/Interface/CLASH_InputConfigurable.h"
 #include "CLASH_MainMenu.generated.h"
 
 class UCommonButtonBase;
 
 UCLASS()
-class PROJECT_CLASH_API UCLASH_MainMenu : public UCLASH_BaseWiget
+class PROJECT_CLASH_API UCLASH_MainMenu : public UCLASH_BaseWiget, public ICLASH_InputConfigurable
 {
 	GENERATED_BODY()
 	
@@ -25,6 +26,8 @@ public:
 
 	UFUNCTION()
 	void OnQuitButtonClicked();
+
+	virtual bool ShouldShowMouseCursor() const override { return true; } 
 
 protected:
 	virtual void NativeConstruct() override;
