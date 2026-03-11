@@ -34,4 +34,5 @@ protected:
 
 private:
 	ACharacter* FindSelectedCharacter(FName Tag) const;
+	void CharacterSetting(FName Tag);
 };

@@ -9,4 +9,5 @@ void ACLASH_PlayerController::CharacterPosses(APawn* SelectedChar)
     {
         Possess(SelectedChar);
     }
+    else { return; }
 }
