@@ -16,3 +16,8 @@ ACLASH_BaseCharacter* UCLASH_GameplayAbility_Base::GetClashBaseCharacterFromActo
 {
 	return Cast<ACLASH_BaseCharacter>(CurrentActorInfo->AvatarActor);
 }
+
+UActorComponent* UCLASH_GameplayAbility_Base::GetClashComponent(TSubclassOf<UActorComponent> ComponentClass) const
+{
+	return GetClashBaseCharacterFromActorInfo() ? GetClashBaseCharacterFromActorInfo()->FindComponentByClass(ComponentClass) : nullptr;
+}

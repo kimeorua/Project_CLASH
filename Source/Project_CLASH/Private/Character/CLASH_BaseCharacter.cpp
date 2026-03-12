@@ -6,6 +6,9 @@
 #include "GAS/CLASH_AbilitySystemComponent.h"
 #include "GAS/AttributeSet/CLASH_AttributeSet_Basic.h"
 #include "DataAsset/GASConfig/CLASH_AbilitySystemConfig.h"
+#include "Component/Weapon/CLASH_WeaponComponent.h"
+
+#include "DebugHelper.h"
 
 // Sets default values
 ACLASH_BaseCharacter::ACLASH_BaseCharacter()
@@ -16,6 +19,7 @@ ACLASH_BaseCharacter::ACLASH_BaseCharacter()
 
 	ClashASC = CreateDefaultSubobject<UCLASH_AbilitySystemComponent>(TEXT("ClashASC"));
 	BasicAttributeSet = CreateDefaultSubobject<UCLASH_AttributeSet_Basic>(TEXT("BasicAttributeSet"));
+	WeaponComponent = CreateDefaultSubobject<UCLASH_WeaponComponent>(TEXT("WeaponComponent"));
 }
 
 // Called when the game starts or when spawned

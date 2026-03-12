@@ -8,6 +8,7 @@
 
 class UCLASH_AbilitySystemComponent;
 class ACLASH_BaseCharacter;
+class UActorComponent;
 
 UCLASS()
 class PROJECT_CLASH_API UCLASH_GameplayAbility_Base : public UGameplayAbility
@@ -20,4 +21,7 @@ public:
 
 	UFUNCTION(BlueprintPure, Category = "Clash|Ability|Util")
 	ACLASH_BaseCharacter* GetClashBaseCharacterFromActorInfo() const;
+
+	UFUNCTION(BlueprintPure, Category = "Clash|Ability|Util", meta = (DeterminesOutputType = "ComponentClass"))
+	UActorComponent* GetClashComponent(TSubclassOf<UActorComponent> ComponentClass) const;
 };
