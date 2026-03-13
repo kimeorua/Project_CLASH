@@ -20,13 +20,31 @@ class PROJECT_CLASH_API UCLASH_AttributeSet_Basic : public UAttributeSet
 	GENERATED_BODY()
 
 public:
-	UPROPERTY(BlueprintReadOnly, Category = "Health", meta = (AllowPrivateAccess = "true"))
-	FGameplayAttributeData TestFloat;
+	static const float ABSOLUTE_MAX_WILLCOUNT;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Attributes")
+	FGameplayAttributeData Focus;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Attributes")
+	FGameplayAttributeData MaxFocus;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Attributes")
+	FGameplayAttributeData WillCount;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Attributes")
+	FGameplayAttributeData MaxWillCount;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Attributes")
+	FGameplayAttributeData AttackPower;
 
 	UCLASH_AttributeSet_Basic();
 
 	virtual void PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue) override;
 	virtual void PostGameplayEffectExecute(const struct FGameplayEffectModCallbackData& Data)override;
 
-	ATTRIBUTE_ACCESSORS(UCLASH_AttributeSet_Basic, TestFloat);
+	ATTRIBUTE_ACCESSORS(UCLASH_AttributeSet_Basic, Focus);
+	ATTRIBUTE_ACCESSORS(UCLASH_AttributeSet_Basic, MaxFocus);
+	ATTRIBUTE_ACCESSORS(UCLASH_AttributeSet_Basic, WillCount);
+	ATTRIBUTE_ACCESSORS(UCLASH_AttributeSet_Basic, MaxWillCount);
+	ATTRIBUTE_ACCESSORS(UCLASH_AttributeSet_Basic, AttackPower);
 };
