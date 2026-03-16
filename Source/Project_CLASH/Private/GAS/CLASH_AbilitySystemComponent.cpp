@@ -10,9 +10,12 @@ void UCLASH_AbilitySystemComponent::OnAbilityInputPressed(const FGameplayTag& In
 {
     if (!InInputTag.IsValid()) return;
 
-    if (FGameplayAbilitySpecHandle* FoundHandle = InputTagToAbilityHandles.Find(InInputTag))
+    TArray<FGameplayAbilitySpecHandle> Handles;
+    InputTagToAbilityHandles.MultiFind(InInputTag, Handles);
+
+    for (FGameplayAbilitySpecHandle Hanlde : Handles)
     {
-        FGameplayAbilitySpec* Spec = FindAbilitySpecFromHandle(*FoundHandle);
+        FGameplayAbilitySpec* Spec = FindAbilitySpecFromHandle(Hanlde);
         if (Spec)
         {
             Spec->InputPressed = true;

@@ -16,4 +16,10 @@ class PROJECT_CLASH_API UCLASH_BlueprintFunctionLibrary : public UBlueprintFunct
 public:
     UFUNCTION(BlueprintCallable, Category = "CLASH|Utility")
     static ACLASH_BaseCharacter* GetComponentOwner(const UActorComponent* Comp);
+
+    UFUNCTION(BlueprintCallable, Category = "CLASH|Utility")
+    static void AddGameplayTagToActorIfNone(AActor* InActor, FGameplayTag TagToAdd);
+
+    UFUNCTION(BlueprintCallable, Category = "CLASH|Utility")
+    static void RemoveGameplayTagToActorIfFind(AActor* InActor, FGameplayTag TagToRemove);
 };

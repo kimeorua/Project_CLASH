@@ -43,6 +43,7 @@ void UCLASH_AbilitySystemConfig::GrantAbilitiesWithTags(const TArray<FCLASH_Abil
 	for (const FCLASH_AbilityBindInfo& Info : InAbilitiesToGive)
 	{
 		if (!Info.AbilityClass) continue;
+
 		FGameplayAbilitySpec Spec(Info.AbilityClass, ApplyLevel);
 		Spec.SourceObject = InASCToGive->GetAvatarActor();
 		FGameplayAbilitySpecHandle Handle = InASCToGive->GiveAbility(Spec);
