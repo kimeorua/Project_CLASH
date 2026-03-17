@@ -18,17 +18,9 @@ void UCLASH_AbilitySystemComponent::OnAbilityInputPressed(const FGameplayTag& In
         FGameplayAbilitySpec* Spec = FindAbilitySpecFromHandle(Hanlde);
         if (Spec)
         {
-            Spec->InputPressed = true;
-
-            if (Spec->IsActive())
-            {
-                AbilitySpecInputPressed(*Spec);
-            }
-            else
-            {
-                TryActivateAbility(Spec->Handle);
-            }
+            TryActivateAbility(Spec->Handle);
         }
+        else { return; }
     }
 }
 
@@ -41,11 +33,8 @@ void UCLASH_AbilitySystemComponent::OnAbilityInputReleased(const FGameplayTag& I
         FGameplayAbilitySpec* Spec = FindAbilitySpecFromHandle(*FoundHandle);
         if (Spec)
         {
-            Spec->InputPressed = false;
-            if (Spec->IsActive())
-            {
-                AbilitySpecInputReleased(*Spec);
-            }
+            return;
+            // TODO 가드 해제 와 같은 기능 구현시 구현 할것!
         }
     }
 }
