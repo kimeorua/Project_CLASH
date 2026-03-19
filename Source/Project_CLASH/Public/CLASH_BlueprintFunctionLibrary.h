@@ -6,6 +6,13 @@
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "CLASH_BlueprintFunctionLibrary.generated.h"
 
+UENUM()
+enum class EClashConfirmType : uint8
+{
+    Yes,
+    No
+};
+
 class ACLASH_BaseCharacter;
 
 UCLASS()
@@ -22,4 +29,9 @@ public:
 
     UFUNCTION(BlueprintCallable, Category = "CLASH|Utility")
     static void RemoveGameplayTagToActorIfFind(AActor* InActor, FGameplayTag TagToRemove);
+
+    static bool NativeDoseActorHaveTag(AActor* InActor, FGameplayTag TagToCheck);
+
+    UFUNCTION(BlueprintCallable, Category = "CLASH|Utility", meta = (DisplayName = "Dose Actor Have Tag", ExpandEnumAsExecs = "OutConfirmType"))
+    static void BP_DoseActorHaveTag(AActor* InActor, FGameplayTag TagToCheck, EClashConfirmType& OutConfirmType);
 };

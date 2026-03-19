@@ -13,5 +13,14 @@ UCLASS()
 class PROJECT_CLASH_API ACLASH_EnemyCharacter : public ACLASH_BaseCharacter
 {
 	GENERATED_BODY()
-	
+
+/* =========================
+ * Basic
+* ========================= */
+public:
+	ACLASH_EnemyCharacter();
+
+protected:
+	virtual void BeginPlay() override;
+	virtual void PossessedBy(AController* NewController) override;
 };

@@ -9,6 +9,7 @@
 #include "Component/Input/CLASH_EnhancedInputComponent.h"
 #include "DataAsset/Input/CLASH_InputConfig.h"
 #include "GAS/CLASH_AbilitySystemComponent.h"
+#include "Component/LockOn/LockOnComoponent.h"
 
 #include "CLASH_GameplayTag.h"
 
@@ -51,6 +52,8 @@ void ACLASH_PlayerCharacter::PlayerCharacterInit()
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationRoll = false;
 	bUseControllerRotationYaw = false;
+
+	LockOnComponent = CreateDefaultSubobject<ULockOnComoponent>(TEXT("LockOnComponent"));
 }
 
 void ACLASH_PlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)

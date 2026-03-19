@@ -38,3 +38,14 @@ void UCLASH_BlueprintFunctionLibrary::RemoveGameplayTagToActorIfFind(AActor* InA
 		ASC->RemoveLooseGameplayTag(TagToRemove);
 	}
 }
+
+bool UCLASH_BlueprintFunctionLibrary::NativeDoseActorHaveTag(AActor* InActor, FGameplayTag TagToCheck)
+{
+	UCLASH_AbilitySystemComponent* ASC = Cast<UCLASH_AbilitySystemComponent>(UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(InActor));
+	return ASC->HasMatchingGameplayTag(TagToCheck);
+}
+
+void UCLASH_BlueprintFunctionLibrary::BP_DoseActorHaveTag(AActor* InActor, FGameplayTag TagToCheck, EClashConfirmType& OutConfirmType)
+{
+	OutConfirmType = NativeDoseActorHaveTag(InActor, TagToCheck) ? EClashConfirmType::Yes : EClashConfirmType::No;
+}
