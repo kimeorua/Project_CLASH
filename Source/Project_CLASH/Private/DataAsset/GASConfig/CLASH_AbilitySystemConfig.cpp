@@ -11,7 +11,7 @@ void UCLASH_AbilitySystemConfig::GiveToAbilitySystemComponent(UCLASH_AbilitySyst
 	check(InASCToGive);
 
 	GrantAbilities(GivenAbilities, InASCToGive, ApplyLevel);
-	GrantAbilitiesWithTags(TriggeredAbilities, InASCToGive, ApplyLevel);
+	GrantAbilities(TriggeredAbilities, InASCToGive, ApplyLevel);
 
 	if (!StartUpGameplayEffects.IsEmpty())
 	{
@@ -35,19 +35,5 @@ void UCLASH_AbilitySystemConfig::GrantAbilities(TArray<TSubclassOf<UCLASH_Gamepl
 		FGameplayAbilitySpec AbilitySpec(Ability, ApplyLevel);
 		AbilitySpec.SourceObject = InASCToGive->GetAvatarActor();
 		InASCToGive->GiveAbility(AbilitySpec);
-	}
-}
-
-void UCLASH_AbilitySystemConfig::GrantAbilitiesWithTags(const TArray<FCLASH_AbilityBindInfo>& InAbilitiesToGive, UCLASH_AbilitySystemComponent* InASCToGive, int32 ApplyLevel)
-{
-	for (const FCLASH_AbilityBindInfo& Info : InAbilitiesToGive)
-	{
-		if (!Info.AbilityClass) continue;
-
-		FGameplayAbilitySpec Spec(Info.AbilityClass, ApplyLevel);
-		Spec.SourceObject = InASCToGive->GetAvatarActor();
-		FGameplayAbilitySpecHandle Handle = InASCToGive->GiveAbility(Spec);
-
-		InASCToGive->RegisterAbilityWithTag(Info.InputTag, Handle);
 	}
 }
