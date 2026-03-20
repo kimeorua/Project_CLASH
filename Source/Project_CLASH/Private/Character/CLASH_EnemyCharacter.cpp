@@ -18,3 +18,10 @@ void ACLASH_EnemyCharacter::PossessedBy(AController* NewController)
 {
 	Super::PossessedBy(NewController);
 }
+
+FVector ACLASH_EnemyCharacter::GetUISokcetPosition() const
+{
+	if (UISocketName == "") { return FVector::ZeroVector; }
+
+	return GetMesh()->GetSocketLocation(UISocketName);
+}

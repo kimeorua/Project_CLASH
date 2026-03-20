@@ -23,4 +23,14 @@ public:
 protected:
 	virtual void BeginPlay() override;
 	virtual void PossessedBy(AController* NewController) override;
+
+/* =========================
+ * LockOn UI Position
+* ========================= */
+public:
+	FVector GetUISokcetPosition() const;
+
+private:
+	UPROPERTY(EditDefaultsOnly, Category = "UI|Socket", meta = (AllowPrivateAccess = "true"))
+	FName UISocketName;
 };
