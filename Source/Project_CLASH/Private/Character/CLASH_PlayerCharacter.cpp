@@ -10,6 +10,7 @@
 #include "DataAsset/Input/CLASH_InputConfig.h"
 #include "GAS/CLASH_AbilitySystemComponent.h"
 #include "Component/LockOn/LockOnComoponent.h"
+#include "Component/UI/CLASH_UIComponent_Player.h"
 
 #include "CLASH_GameplayTag.h"
 
@@ -26,6 +27,8 @@ void ACLASH_PlayerCharacter::BeginPlay()
 void ACLASH_PlayerCharacter::PossessedBy(AController* NewController)
 {
 	Super::PossessedBy(NewController);
+
+	PlayerUIComponent->InitUIComponent(this);
 }
 
 void ACLASH_PlayerCharacter::PlayerCharacterInit()
@@ -54,6 +57,7 @@ void ACLASH_PlayerCharacter::PlayerCharacterInit()
 	bUseControllerRotationYaw = false;
 
 	LockOnComponent = CreateDefaultSubobject<ULockOnComoponent>(TEXT("LockOnComponent"));
+	PlayerUIComponent = CreateDefaultSubobject<UCLASH_UIComponent_Player>(TEXT("PlayerUIComponent"));
 }
 
 void ACLASH_PlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)

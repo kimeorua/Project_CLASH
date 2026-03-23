@@ -12,6 +12,7 @@ class USpringArmComponent;
 class UCameraComponent;
 class UCLASH_InputConfig;
 class ULockOnComoponent;
+class UCLASH_UIComponent_Player;
 
 UCLASS()
 class PROJECT_CLASH_API ACLASH_PlayerCharacter : public ACLASH_BaseCharacter
@@ -69,4 +70,10 @@ private:
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera|LockOn", meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<ULockOnComoponent>LockOnComponent;
+
+/* =========================
+ * UI
+* ========================= */
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "UI", meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<UCLASH_UIComponent_Player>PlayerUIComponent;
 };

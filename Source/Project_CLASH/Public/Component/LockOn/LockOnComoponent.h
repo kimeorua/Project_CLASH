@@ -39,7 +39,7 @@ private:
 	
 	UPROPERTY()
 	TObjectPtr<UUserWidget> LockOnUI;
-
+	
 	FVector2D LockOnUISize = FVector2D::ZeroVector;
 
 	bool bIsLockOn = false;
