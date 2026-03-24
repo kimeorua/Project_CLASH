@@ -6,26 +6,25 @@
 #include "Component/UI/CLASH_UIComponent_Base.h"
 #include "CLASH_UIComponent_Player.generated.h"
 
-/**
- * 
- */
+class UCLASH_HUD_Player;
+
 UCLASS()
 class PROJECT_CLASH_API UCLASH_UIComponent_Player : public UCLASH_UIComponent_Base
 {
 	GENERATED_BODY()
 
-/* =========================
- * Basic
-* ========================= */
 public:
 	UCLASH_UIComponent_Player();
 
 protected:
 	virtual void BeginPlay() override;
+	virtual void CreateHUD() override;
+	virtual void SettingInitValue() override;
+	virtual void BindUpdage(UAbilitySystemComponent* InASC) override;
 
-/* =========================
-	 * HUD
-* ========================= */
-public:
-	virtual void InitUIComponent(ACLASH_BaseCharacter* ClashCharacter) override;
+private:
+	virtual void OnCurrentAwakeningChanged(const FOnAttributeChangeData& Data);
+
+	UPROPERTY()
+	TObjectPtr<UCLASH_HUD_Player> HUD_Player;
 };

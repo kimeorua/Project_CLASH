@@ -13,6 +13,7 @@ class UCameraComponent;
 class UCLASH_InputConfig;
 class ULockOnComoponent;
 class UCLASH_UIComponent_Player;
+class UCLASH_AttributeSet_Player;
 
 UCLASS()
 class PROJECT_CLASH_API ACLASH_PlayerCharacter : public ACLASH_BaseCharacter
@@ -41,6 +42,13 @@ private:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera|Camera", meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<UCameraComponent> Camera;
+
+/* =========================
+ * GAS
+* ========================= */
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "GAS|AttributeSet", meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<UCLASH_AttributeSet_Player> PlayerAttributeSet;
+
 
 /* =========================
  * MovementSpeed

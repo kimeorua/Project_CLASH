@@ -11,6 +11,7 @@
 #include "GAS/CLASH_AbilitySystemComponent.h"
 #include "Component/LockOn/LockOnComoponent.h"
 #include "Component/UI/CLASH_UIComponent_Player.h"
+#include "GAS/AttributeSet/CLASH_AttributeSet_Player.h"
 
 #include "CLASH_GameplayTag.h"
 
@@ -58,6 +59,8 @@ void ACLASH_PlayerCharacter::PlayerCharacterInit()
 
 	LockOnComponent = CreateDefaultSubobject<ULockOnComoponent>(TEXT("LockOnComponent"));
 	PlayerUIComponent = CreateDefaultSubobject<UCLASH_UIComponent_Player>(TEXT("PlayerUIComponent"));
+
+	PlayerAttributeSet = CreateDefaultSubobject<UCLASH_AttributeSet_Player>(TEXT("PlayerAttributeSet"));
 }
 
 void ACLASH_PlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)

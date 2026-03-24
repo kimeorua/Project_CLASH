@@ -3,13 +3,13 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "UI/HUD/CLASH_HUD_Base.h"
-#include "CLASH_HUD_Player.generated.h"
+#include "Blueprint/UserWidget.h"
+#include "CLASH_WillBeadWidget.generated.h"
 
-class UProgressBar;
+class UImage;
 
 UCLASS()
-class PROJECT_CLASH_API UCLASH_HUD_Player : public UCLASH_HUD_Base
+class PROJECT_CLASH_API UCLASH_WillBeadWidget : public UUserWidget
 {
 	GENERATED_BODY()
 
@@ -17,9 +17,5 @@ protected:
 	virtual void NativeConstruct() override;
 
 	UPROPERTY(BlueprintReadOnly, Category = "HUD|Widgets", meta = (BindWidget, AllowPrivateAccess = "true"))
-	TObjectPtr<UProgressBar> AwakeningGauge;
-
-public:
-	UFUNCTION()
-	void UpdateAwakeningGauge(float Percent);
+	TObjectPtr<UImage> WillBaed;
 };

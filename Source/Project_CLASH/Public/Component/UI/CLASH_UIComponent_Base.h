@@ -28,11 +28,10 @@ protected:
 /* =========================
  * HUD
 * ========================= */
-private:
+protected:
 	UPROPERTY(EditDefaultsOnly, Category = "UI", meta = (AllowPrivateAccess = "true"))
 	TSubclassOf<UCLASH_HUD_Base> HUDClass;
 
-protected:
 	UPROPERTY()
 	TObjectPtr<UCLASH_HUD_Base> HUD;
 
@@ -40,8 +39,11 @@ protected:
 	TObjectPtr <UAbilitySystemComponent>ASC;
 
 	virtual void OnCurrentFocusChanged(const FOnAttributeChangeData& Data);
+	virtual void CreateHUD();
 	virtual void SettingInitValue();
 
+	virtual void BindUpdage(UAbilitySystemComponent* InASC);
+
 public:
-	virtual void InitUIComponent(ACLASH_BaseCharacter* ClashCharacter);
+	void InitUIComponent(ACLASH_BaseCharacter* ClashCharacter);
 };
