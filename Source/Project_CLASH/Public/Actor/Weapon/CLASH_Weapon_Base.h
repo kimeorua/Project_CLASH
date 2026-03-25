@@ -19,6 +19,8 @@ class PROJECT_CLASH_API ACLASH_Weapon_Base : public AActor
 public:	
 	ACLASH_Weapon_Base();
 
+	FORCEINLINE UStaticMeshComponent* GetWeaponMesh() const { return WeaponMesh; }
+
 protected:
 	virtual void BeginPlay() override;
 
@@ -28,6 +30,7 @@ public:
 /* =========================
  * Component
 * ========================= */
+private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Weapon|Mesh", meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<UStaticMeshComponent> WeaponMesh;
 };

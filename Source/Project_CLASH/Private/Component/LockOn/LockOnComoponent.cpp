@@ -30,7 +30,7 @@ void ULockOnComoponent::TargetLockOnActivate(float DeltaTime)
 		FVector LookAtLocation = TargetActor->GetActorLocation();
 		FRotator TargetRotation = UKismetMathLibrary::FindLookAtRotation(GetOwner()->GetActorLocation(), LookAtLocation);
 
-		TargetRotation.Pitch = FMath::Clamp(TargetRotation.Pitch, -40.0f, 20.0f);
+		TargetRotation.Pitch = FMath::Clamp(TargetRotation.Pitch, -20.0f, 5.0f);
 
 		APlayerController* PC = Cast<APlayerController>(Cast<ACharacter>(GetOwner())->GetController());
 		if (!PC) { return; }

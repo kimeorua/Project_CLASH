@@ -12,3 +12,13 @@ enum class EWeaponAttachType : uint8
     RightHand UMETA(DisplayName = "RightHand"),
     Max UMETA(Hidden)
 };
+
+UENUM(BlueprintType)
+enum class ETraceShapeType : uint8
+{
+    None UMETA(DisplayName = "None"),
+    Sphere UMETA(DisplayName = "Sphere"),
+    Box UMETA(DisplayName = "Box"),
+    Capsule UMETA(DisplayName = "Capsule"),
+    Max UMETA(Hidden)
+};

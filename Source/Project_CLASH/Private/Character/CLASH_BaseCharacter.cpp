@@ -56,3 +56,8 @@ void ACLASH_BaseCharacter::InitAbilitySystem()
 		}
 	}
 }
+
+UCLASH_CombatComponent* ACLASH_BaseCharacter::GetCombatComponent() const
+{
+	return nullptr;
+}

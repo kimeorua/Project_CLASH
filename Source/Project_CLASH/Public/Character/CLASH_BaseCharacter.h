@@ -11,6 +11,7 @@ class UCLASH_AbilitySystemComponent;
 class UCLASH_AttributeSet_Basic;
 class UCLASH_AbilitySystemConfig;
 class UCLASH_WeaponComponent;
+class UCLASH_CombatComponent;
 
 UCLASS()
 class PROJECT_CLASH_API ACLASH_BaseCharacter : public ACharacter, public IAbilitySystemInterface
@@ -52,4 +53,10 @@ private:
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "WeaponComponent", meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<UCLASH_WeaponComponent>WeaponComponent;
+
+/* =========================
+ * CombatComponent
+* ========================= */
+public:
+	virtual UCLASH_CombatComponent* GetCombatComponent() const;
 };

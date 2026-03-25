@@ -5,6 +5,7 @@
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "EnhancedInputSubsystems.h"
+#include "CLASH_GameplayTag.h"
 
 #include "Component/Input/CLASH_EnhancedInputComponent.h"
 #include "DataAsset/Input/CLASH_InputConfig.h"
@@ -12,8 +13,7 @@
 #include "Component/LockOn/LockOnComoponent.h"
 #include "Component/UI/CLASH_UIComponent_Player.h"
 #include "GAS/AttributeSet/CLASH_AttributeSet_Player.h"
-
-#include "CLASH_GameplayTag.h"
+#include "Component/Combat/CLASH_CombatComponent_Player.h"
 
 ACLASH_PlayerCharacter::ACLASH_PlayerCharacter()
 {
@@ -59,6 +59,7 @@ void ACLASH_PlayerCharacter::PlayerCharacterInit()
 
 	LockOnComponent = CreateDefaultSubobject<ULockOnComoponent>(TEXT("LockOnComponent"));
 	PlayerUIComponent = CreateDefaultSubobject<UCLASH_UIComponent_Player>(TEXT("PlayerUIComponent"));
+	PlayerCombatComponent = CreateDefaultSubobject<UCLASH_CombatComponent_Player>(TEXT("PlayerCombatComponent"));
 
 	PlayerAttributeSet = CreateDefaultSubobject<UCLASH_AttributeSet_Player>(TEXT("PlayerAttributeSet"));
 }
@@ -133,4 +134,9 @@ void ACLASH_PlayerCharacter::InputAbilityInputReleased(FGameplayTag InInputTag)
 {
 	ClashASC->OnAbilityInputReleased(InInputTag);
 	//Ability 취소 or 종료
+}
+
+UCLASH_CombatComponent* ACLASH_PlayerCharacter::GetCombatComponent() const
+{
+	return PlayerCombatComponent ? PlayerCombatComponent : nullptr;
 }

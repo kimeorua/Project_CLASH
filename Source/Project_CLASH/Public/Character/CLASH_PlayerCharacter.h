@@ -14,6 +14,7 @@ class UCLASH_InputConfig;
 class ULockOnComoponent;
 class UCLASH_UIComponent_Player;
 class UCLASH_AttributeSet_Player;
+class UCLASH_CombatComponent_Player;
 
 UCLASS()
 class PROJECT_CLASH_API ACLASH_PlayerCharacter : public ACLASH_BaseCharacter
@@ -84,4 +85,14 @@ private:
 * ========================= */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "UI", meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<UCLASH_UIComponent_Player>PlayerUIComponent;
+
+/* =========================
+ * CombatComponent
+* ========================= */
+public:
+	virtual UCLASH_CombatComponent* GetCombatComponent() const override;
+
+private:
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Combat", meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<UCLASH_CombatComponent_Player>PlayerCombatComponent;
 };

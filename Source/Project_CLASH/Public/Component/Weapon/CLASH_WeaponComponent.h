@@ -34,12 +34,13 @@ public:
  * Weapons
 * ========================= */
 private:
-	TMultiMap<EWeaponAttachType, ACLASH_Weapon_Base*>WeaponMap;
-
-	UPROPERTY(VisibleAnywhere)
-	TArray<TObjectPtr<ACLASH_Weapon_Base>> GCProtectionArray;
+	UPROPERTY(VisibleAnywhere, Category = "Weapon")
+	TMap<EWeaponAttachType, TObjectPtr<ACLASH_Weapon_Base>>WeaponMap;
 
 public:
 	UFUNCTION(BlueprintCallable)
 	void RegisterWeapons(EWeaponAttachType Type, ACLASH_Weapon_Base* WeaponActor);
+
+	const FVector GetSocketLocation(EWeaponAttachType Type, FName SocketName);
+	const FQuat GetSocketQuat(EWeaponAttachType Type, FName SocketName);
 };

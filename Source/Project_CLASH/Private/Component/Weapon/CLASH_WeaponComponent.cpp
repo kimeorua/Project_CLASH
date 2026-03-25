@@ -5,19 +5,14 @@
 #include "Character/CLASH_BaseCharacter.h"
 #include "Actor/Weapon/CLASH_Weapon_Base.h"
 
-#include "DebugHelper.h"
-
 UCLASH_WeaponComponent::UCLASH_WeaponComponent()
 {
 	WeaponMap.Empty();
-	GCProtectionArray.Empty();
 }
 
 void UCLASH_WeaponComponent::BeginPlay()
 {
 	Super::BeginPlay();
-
-	DebugHelper::Print("BeginPlay - UCLASH_WeaponComponent");
 }
 
 ACLASH_BaseCharacter* UCLASH_WeaponComponent::GetOwnerCharacter_Implementation() const
@@ -30,5 +25,31 @@ void UCLASH_WeaponComponent::RegisterWeapons(EWeaponAttachType Type, ACLASH_Weap
 	if (!WeaponActor) { return; }
 
 	WeaponMap.Add(Type, WeaponActor);
-	GCProtectionArray.Add(WeaponActor);
+}
+
+const FVector UCLASH_WeaponComponent::GetSocketLocation(EWeaponAttachType Type, FName SocketName)
+{
+	if (!WeaponMap.Contains(Type)) { return FVector(); }
+
+	ACLASH_Weapon_Base* FoundWeapon = WeaponMap.FindRef(Type);
+
+	if (FoundWeapon && FoundWeapon->GetWeaponMesh())
+	{
+		return FoundWeapon->GetWeaponMesh()->GetSocketLocation(SocketName);
+	}
+
+	return GetOwner() ? GetOwner()->GetActorLocation() : FVector::ZeroVector;
+}
+
+const FQuat UCLASH_WeaponComponent::GetSocketQuat(EWeaponAttachType Type, FName SocketName)
+{
+	if (!WeaponMap.Contains(Type)) { return FQuat::Identity; }
+
+	ACLASH_Weapon_Base* FoundWeapon = WeaponMap.FindRef(Type);
+
+	if (FoundWeapon && FoundWeapon->GetWeaponMesh())
+	{
+		return FoundWeapon->GetWeaponMesh()->GetSocketQuaternion(SocketName);
+	}
+	return FQuat::Identity;
 }
