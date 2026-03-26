@@ -30,13 +30,17 @@ private:
 	UPROPERTY()
 	TObjectPtr<UCLASH_WeaponComponent> WeaponComp;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat|Collision", meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Combat|Collision", meta = (AllowPrivateAccess = "true"))
 	TEnumAsByte<ECollisionChannel> TraceChannel;
 
-	FCollisionShape GetCollisionShapeFromData(ETraceShapeType ShapeType);
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Combat|Collision", meta = (AllowPrivateAccess = "true"))
+	bool bIsTraceShow = false;
 
-	bool RunSweep(const FVector& Start, const FVector& End, const FQuat Quat, const FCollisionShape& Shape, const FCollisionQueryParams& Params);
+	bool RunSweep(ETraceShapeType ShapeType, const FVector& Start, const FVector& End, const FQuat Quat , FHitResult& HitResult);
 
 	FVector LastMid;
 	FVector LastEnd;
+
+	UPROPERTY()
+	TObjectPtr<AActor> HitedActor;
 };

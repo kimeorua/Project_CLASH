@@ -19,6 +19,5 @@ enum class ETraceShapeType : uint8
     None UMETA(DisplayName = "None"),
     Sphere UMETA(DisplayName = "Sphere"),
     Box UMETA(DisplayName = "Box"),
-    Capsule UMETA(DisplayName = "Capsule"),
     Max UMETA(Hidden)
 };
