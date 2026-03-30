@@ -7,6 +7,7 @@ namespace ClashGameplayTags
 	UE_DEFINE_GAMEPLAY_TAG(Input_Attack_A, "Input.Attack.A");
 	UE_DEFINE_GAMEPLAY_TAG(Input_Attack_B, "Input.Attack.B");
 	UE_DEFINE_GAMEPLAY_TAG(Input_LockOn, "Input.LockOn");
+	UE_DEFINE_GAMEPLAY_TAG(Input_Guard, "Input.Guard");
 
 	UE_DEFINE_GAMEPLAY_TAG(Player_Ability_Combo_X_1, "Player.Ability.Combo.X.1");
 	UE_DEFINE_GAMEPLAY_TAG(Player_Ability_Combo_X_2, "Player.Ability.Combo.X.2");

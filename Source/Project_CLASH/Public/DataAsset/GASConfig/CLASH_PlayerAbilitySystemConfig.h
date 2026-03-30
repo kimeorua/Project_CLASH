@@ -9,6 +9,16 @@
 class UCLASH_AbilitySystemComponent;
 class UCLASH_GameplayAbility_Base;
 
+UENUM(BlueprintType)
+enum class EClashInputID : uint8
+{
+	None,
+	Attack_A,
+	Attack_B,
+	Guard,
+	LockOn
+};
+
 USTRUCT(BlueprintType)
 struct FCLASH_AbilityBindInfo
 {
@@ -19,6 +29,9 @@ struct FCLASH_AbilityBindInfo
 
 	UPROPERTY(EditAnywhere, Category = "Ability")
 	FGameplayTag InputTag;
+
+	UPROPERTY(EditAnywhere, Category = "Ability")
+	EClashInputID InputID;
 };
 
 UCLASS()

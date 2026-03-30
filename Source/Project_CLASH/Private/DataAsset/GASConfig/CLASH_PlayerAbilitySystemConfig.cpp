@@ -18,10 +18,12 @@ void UCLASH_PlayerAbilitySystemConfig::GrantAbilitiesWithTags(const TArray<FCLAS
 	{
 		if (!Info.AbilityClass) continue;
 
-		FGameplayAbilitySpec Spec(Info.AbilityClass, ApplyLevel);
+		int32 InputID = static_cast<int32>(Info.InputID);
+		FGameplayAbilitySpec Spec(Info.AbilityClass, ApplyLevel, InputID);
 		Spec.SourceObject = InASCToGive->GetAvatarActor();
 		FGameplayAbilitySpecHandle Handle = InASCToGive->GiveAbility(Spec);
+		FGameplayTag InputTag = Info.InputTag;
 
-		InASCToGive->RegisterAbilityWithTag(Info.InputTag, Handle);
+		InASCToGive->RegisterAbilityWithTag(InputTag, Handle);
 	}
 }

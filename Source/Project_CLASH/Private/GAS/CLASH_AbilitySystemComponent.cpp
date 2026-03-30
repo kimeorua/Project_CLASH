@@ -6,6 +6,8 @@
 
 #include "GAS/Ability/CLASH_GameplayAbility_Base.h"
 
+#include "DebugHelper.h"
+
 void UCLASH_AbilitySystemComponent::OnAbilityInputPressed(const FGameplayTag& InInputTag)
 {
     if (!InInputTag.IsValid()) return;
@@ -16,11 +18,17 @@ void UCLASH_AbilitySystemComponent::OnAbilityInputPressed(const FGameplayTag& In
     for (FGameplayAbilitySpecHandle Hanlde : Handles)
     {
         FGameplayAbilitySpec* Spec = FindAbilitySpecFromHandle(Hanlde);
-        if (Spec)
+
+        if (!Spec) { continue; }
+
+        if (Spec->IsActive())
+        {
+            AbilityLocalInputPressed(Spec->InputID);
+        }
+        else 
         {
             TryActivateAbility(Spec->Handle);
         }
-        else { return; }
     }
 }
 
@@ -28,18 +36,21 @@ void UCLASH_AbilitySystemComponent::OnAbilityInputReleased(const FGameplayTag& I
 {
     if (!InInputTag.IsValid()) return;
 
-    if (FGameplayAbilitySpecHandle* FoundHandle = InputTagToAbilityHandles.Find(InInputTag))
+    TArray<FGameplayAbilitySpecHandle> Handles;
+    InputTagToAbilityHandles.MultiFind(InInputTag, Handles);
+
+    for (FGameplayAbilitySpecHandle Hanlde : Handles)
     {
-        FGameplayAbilitySpec* Spec = FindAbilitySpecFromHandle(*FoundHandle);
-        if (Spec)
+        FGameplayAbilitySpec* Spec = FindAbilitySpecFromHandle(Hanlde);
+
+        if (Spec && Spec->IsActive())
         {
-            return;
-            // TODO 가드 해제 와 같은 기능 구현시 구현 할것!
+            AbilityLocalInputReleased(Spec->InputID);
         }
     }
 }
 
-void UCLASH_AbilitySystemComponent::RegisterAbilityWithTag(FGameplayTag InputTag, FGameplayAbilitySpecHandle Handle)
+void UCLASH_AbilitySystemComponent::RegisterAbilityWithTag(FGameplayTag& InputTag, FGameplayAbilitySpecHandle& Handle)
 {
     if (InputTag.IsValid() && Handle.IsValid())
     {
