@@ -19,8 +19,12 @@ public:
 	virtual void NativeThreadSafeUpdateAnimation(float DeltaSeconds)override;
 
 	FORCEINLINE void SettingLockOnAnim(const bool IsLockOn) { bIsLockOn = IsLockOn; }
+	FORCEINLINE void SettingGuardAnim(const bool IsGuard) { bIsGuard = IsGuard; }
 
 private:
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = "AnimData|LocomationData", meta = (AllowPrivateAccess = "true"))
 	bool bIsLockOn = false;
+
+	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = "AnimData|LocomationData", meta = (AllowPrivateAccess = "true"))
+	bool bIsGuard = false;
 };

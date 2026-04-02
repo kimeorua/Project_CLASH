@@ -18,6 +18,9 @@ public:
 	UCLASH_CombatComponent_Player();
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
+	UFUNCTION(BlueprintCallable)
+	void GuardMode(bool bIsGuard);
+
 protected:
 	virtual void BeginPlay() override;
 };

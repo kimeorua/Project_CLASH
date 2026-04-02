@@ -20,6 +20,7 @@ namespace ClashGameplayTags
 	UE_DEFINE_GAMEPLAY_TAG(Player_Ability_Combo_Derived_Y, "Player.Ability.Combo.Derived.Y");
 	UE_DEFINE_GAMEPLAY_TAG(Player_Ability_Combo_Derived_X, "Player.Ability.Combo.Derived.X");
 	UE_DEFINE_GAMEPLAY_TAG(Player_Ability_LockOn, "Player.Ability.LockOn");
+	UE_DEFINE_GAMEPLAY_TAG(Player_Ability_Guard, "Player.Ability.Guard");
 
 	UE_DEFINE_GAMEPLAY_TAG(Player_State_ReadyCombo_X_2, "Player.State.ReadyCombo.X.2");
 	UE_DEFINE_GAMEPLAY_TAG(Player_State_ReadyCombo_X_3, "Player.State.ReadyCombo.X.3");
@@ -30,6 +31,8 @@ namespace ClashGameplayTags
 	UE_DEFINE_GAMEPLAY_TAG(Player_State_ReadyCombo_Derived_X, "Player.State.ReadyCombo.Derived.X");
 	UE_DEFINE_GAMEPLAY_TAG(Player_State_ReadyCombo_Derived_Y, "Player.State.ReadyCombo.Derived.Y");
 	UE_DEFINE_GAMEPLAY_TAG(Player_State_LockOn, "Player.State.LockOn");
+	UE_DEFINE_GAMEPLAY_TAG(Player_State_UseGuard, "Player.State.UseGuard");
+	UE_DEFINE_GAMEPLAY_TAG(Player_State_IsAttacking, "Player.State.IsAttacking");
 
 	UE_DEFINE_GAMEPLAY_TAG(Player_Event_ReadyToNextCombo, "Player.Event.ReadyToNextCombo");
 	UE_DEFINE_GAMEPLAY_TAG(Player_Event_EndCombo, "Player.Event.EndCombo");
