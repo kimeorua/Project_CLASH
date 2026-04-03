@@ -6,9 +6,8 @@
 #include "Character/CLASH_BaseCharacter.h"
 #include "CLASH_EnemyCharacter.generated.h"
 
-/**
- * 
- */
+class UCLASH_CombatComponent_Enemy;
+
 UCLASS()
 class PROJECT_CLASH_API ACLASH_EnemyCharacter : public ACLASH_BaseCharacter
 {
@@ -33,4 +32,14 @@ public:
 private:
 	UPROPERTY(EditDefaultsOnly, Category = "UI|Socket", meta = (AllowPrivateAccess = "true"))
 	FName UISocketName;
+
+/* =========================
+ * CombatComponent
+* ========================= */
+public:
+	virtual UCLASH_CombatComponent* GetCombatComponent() const override;
+
+private:
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Combat", meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<UCLASH_CombatComponent_Enemy> EnemyCombatComponent;
 };

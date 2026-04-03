@@ -19,6 +19,8 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 	void SetTreceData(FAttackData InAttackData);
 
+	virtual void HitCheack(AActor* Instigator);
+
 protected:
 	virtual void BeginPlay() override;	
 

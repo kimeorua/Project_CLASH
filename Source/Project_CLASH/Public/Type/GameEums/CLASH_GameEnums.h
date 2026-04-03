@@ -10,6 +10,7 @@ enum class EWeaponAttachType : uint8
     None UMETA(DisplayName = "None"),
     LeftHand UMETA(DisplayName = "LeftHand"),
     RightHand UMETA(DisplayName = "RightHand"),
+    TwoHand  UMETA(DisplayName = "TwoHand"),
     Max UMETA(Hidden)
 };
 

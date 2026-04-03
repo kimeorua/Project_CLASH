@@ -4,28 +4,20 @@
 
 #include "CoreMinimal.h"
 #include "Component/Combat/CLASH_CombatComponent.h"
-#include "CLASH_CombatComponent_Player.generated.h"
+#include "CLASH_CombatComponent_Enemy.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class PROJECT_CLASH_API UCLASH_CombatComponent_Player : public UCLASH_CombatComponent
+class PROJECT_CLASH_API UCLASH_CombatComponent_Enemy : public UCLASH_CombatComponent
 {
 	GENERATED_BODY()
 
 public:
-	UCLASH_CombatComponent_Player();
+	UCLASH_CombatComponent_Enemy();
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-
-	UFUNCTION(BlueprintCallable)
-	void GuardMode(bool bIsGuard);
-
-	virtual void HitCheack(AActor* Instigator) override;
 
 protected:
 	virtual void BeginPlay() override;
-
-private:
-	bool IsGuard(AActor* Instigator);
 };

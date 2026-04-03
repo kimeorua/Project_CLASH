@@ -52,6 +52,7 @@ void ACLASH_PlayerCharacter::PlayerCharacterInit()
 	GetCharacterMovement()->BrakingDecelerationWalking = 500.f;
 
 	GetCapsuleComponent()->InitCapsuleSize(42.0f, 96.0f);
+	GetCapsuleComponent()->SetCollisionProfileName("PlayerCapsuleCollision");
 
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationRoll = false;

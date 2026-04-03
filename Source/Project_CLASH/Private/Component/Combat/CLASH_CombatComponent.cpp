@@ -3,9 +3,9 @@
 
 #include "Component/Combat/CLASH_CombatComponent.h"
 #include "Component/Weapon/CLASH_WeaponComponent.h"
-#include "Kismet/KismetSystemLibrary.h"
+#include "Character/CLASH_BaseCharacter.h"
 
-#include "DebugHelper.h"
+#include "Kismet/KismetSystemLibrary.h"
 
 UCLASH_CombatComponent::UCLASH_CombatComponent()
 {
@@ -52,13 +52,13 @@ void UCLASH_CombatComponent::ExcuteTrace()
 		if (HitedActor != Victim)
 		{
 			HitedActor = Victim;
+			ACLASH_BaseCharacter* HitCharacter = Cast<ACLASH_BaseCharacter>(HitedActor);
 
-			DebugHelper::Print("Hit : " + HitedActor->GetActorNameOrLabel());
+			if (!HitCharacter) { return; }
+
+			HitCharacter->GetCombatComponent()->HitCheack(GetOwner());
 		}
-		else
-		{
-			DebugHelper::Print("Already Hit!");
-		}
+		else { return; }
 	}
 
 	LastMid = CurrentMid;
@@ -126,4 +126,8 @@ void UCLASH_CombatComponent::SetTreceData(FAttackData InAttackData)
 	LastEnd = FVector::ZeroVector;
 	LastMid = FVector::ZeroVector;
 	HitedActor = nullptr;
+}
+
+void UCLASH_CombatComponent::HitCheack(AActor* Instigator)
+{
 }
