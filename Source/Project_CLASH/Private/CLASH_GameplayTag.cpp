@@ -32,9 +32,11 @@ namespace ClashGameplayTags
 	UE_DEFINE_GAMEPLAY_TAG(Player_State_ReadyCombo_Derived_Y, "Player.State.ReadyCombo.Derived.Y");
 	UE_DEFINE_GAMEPLAY_TAG(Player_State_LockOn, "Player.State.LockOn");
 	UE_DEFINE_GAMEPLAY_TAG(Player_State_UseGuard, "Player.State.UseGuard");
+	UE_DEFINE_GAMEPLAY_TAG(Player_State_ParryAbale, "Player.State.ParryAbale");
 	UE_DEFINE_GAMEPLAY_TAG(Player_State_IsAttacking, "Player.State.IsAttacking");
 
 	UE_DEFINE_GAMEPLAY_TAG(Player_Event_ReadyToNextCombo, "Player.Event.ReadyToNextCombo");
 	UE_DEFINE_GAMEPLAY_TAG(Player_Event_EndCombo, "Player.Event.EndCombo");
 	UE_DEFINE_GAMEPLAY_TAG(Player_Event_PlayNextCombo, "Player.Event.PlayNextCombo");
+	UE_DEFINE_GAMEPLAY_TAG(Player_Event_GuardReaction, "Player.Event.GuardReaction");
 }

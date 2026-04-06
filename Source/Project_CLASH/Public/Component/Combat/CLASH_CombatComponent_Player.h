@@ -4,11 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "Component/Combat/CLASH_CombatComponent.h"
+
 #include "CLASH_CombatComponent_Player.generated.h"
 
-/**
- * 
- */
 UCLASS()
 class PROJECT_CLASH_API UCLASH_CombatComponent_Player : public UCLASH_CombatComponent
 {
@@ -21,11 +19,14 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void GuardMode(bool bIsGuard);
 
+	UFUNCTION(BlueprintCallable)
+	void GuardReactionActivate(bool bIsGuardReaction);
+
 	virtual void HitCheack(AActor* Instigator) override;
 
 protected:
 	virtual void BeginPlay() override;
 
 private:
-	bool IsGuard(AActor* Instigator);
+	bool CheckAngle(AActor* Instigator);
 };

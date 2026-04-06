@@ -5,6 +5,7 @@
 
 #include "GameFramework/Character.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "AbilitySystemBlueprintLibrary.h"
 
 #include "Animation/CLASH_AnimInstance_Player.h"
 #include "CLASH_BlueprintFunctionLibrary.h"
@@ -32,10 +33,52 @@ void UCLASH_CombatComponent_Player::GuardMode(bool bIsGuard)
 	}
 }
 
+void UCLASH_CombatComponent_Player::GuardReactionActivate(bool bIsGuardReaction)
+{
+    if (ACharacter* OwnerChar = Cast<ACharacter>(GetOwner()))
+    {
+        if (UCLASH_AnimInstance_Player* AnimInst = Cast<UCLASH_AnimInstance_Player>(OwnerChar->GetMesh()->GetAnimInstance()))
+        {
+            AnimInst->SettingGuardReactionAnim(bIsGuardReaction);
+        }
+    }
+}
+
 void UCLASH_CombatComponent_Player::HitCheack(AActor* Instigator)
 {
-	if (IsGuard(Instigator)) { DebugHelper::Print("Guard!"); }
-	else { DebugHelper::Print("Guard Faild - Hit!"); }
+    bool bIsParrying = UCLASH_BlueprintFunctionLibrary::NativeDoseActorHaveTag(GetOwner(), ClashGameplayTags::Player_State_ParryAbale);
+    bool bIsGuarding = UCLASH_BlueprintFunctionLibrary::NativeDoseActorHaveTag(GetOwner(), ClashGameplayTags::Player_State_UseGuard);
+
+    if (!bIsParrying && !bIsGuarding)
+    {
+        DebugHelper::Print("Hit!");
+        // TODO: 피격 로직 실행
+        return;
+    }
+
+    if (CheckAngle(Instigator))
+    {
+        if (bIsParrying)
+        {
+            DebugHelper::Print("Parry Success!");
+            // TODO: 패링 Event 작동
+        }
+
+        else if (bIsGuarding)
+        {
+            DebugHelper::Print("Guard Success!");
+            FGameplayEventData Data;
+            Data.Instigator = Instigator;
+            Data.Target = GetOwner();
+            Data.EventTag = ClashGameplayTags::Player_Event_GuardReaction;
+
+            UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(GetOwner(), ClashGameplayTags::Player_Event_GuardReaction, Data);
+        }
+    }
+    else
+    {
+        DebugHelper::Print("Hit! Guard Faild");
+    }
 }
 
 void UCLASH_CombatComponent_Player::BeginPlay()
@@ -43,13 +86,9 @@ void UCLASH_CombatComponent_Player::BeginPlay()
 	Super::BeginPlay();
 }
 
-bool UCLASH_CombatComponent_Player::IsGuard(AActor* Instigator)
+bool UCLASH_CombatComponent_Player::CheckAngle(AActor* Instigator)
 {
     if (!Instigator) return false;
-
-    bool bIsGuarding = UCLASH_BlueprintFunctionLibrary::NativeDoseActorHaveTag(GetOwner(), ClashGameplayTags::Player_State_UseGuard);
-
-    if (!bIsGuarding) return false;
 
     const float DefenseAngle = 100.0f;
     const float HalfAngleRad = FMath::DegreesToRadians(DefenseAngle * 0.5f);

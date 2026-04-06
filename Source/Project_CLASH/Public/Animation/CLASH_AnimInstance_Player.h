@@ -20,6 +20,7 @@ public:
 
 	FORCEINLINE void SettingLockOnAnim(const bool IsLockOn) { bIsLockOn = IsLockOn; }
 	FORCEINLINE void SettingGuardAnim(const bool IsGuard) { bIsGuard = IsGuard; }
+	FORCEINLINE void SettingGuardReactionAnim(const bool IsGuardReaction) { bIsGuardReaction = IsGuardReaction; }
 
 private:
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = "AnimData|LocomationData", meta = (AllowPrivateAccess = "true"))
@@ -27,4 +28,7 @@ private:
 
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = "AnimData|LocomationData", meta = (AllowPrivateAccess = "true"))
 	bool bIsGuard = false;
+
+	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = "AnimData|LocomationData", meta = (AllowPrivateAccess = "true"))
+	bool bIsGuardReaction = false;
 };
