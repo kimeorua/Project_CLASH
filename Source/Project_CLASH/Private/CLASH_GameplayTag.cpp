@@ -39,4 +39,6 @@ namespace ClashGameplayTags
 	UE_DEFINE_GAMEPLAY_TAG(Player_Event_EndCombo, "Player.Event.EndCombo");
 	UE_DEFINE_GAMEPLAY_TAG(Player_Event_PlayNextCombo, "Player.Event.PlayNextCombo");
 	UE_DEFINE_GAMEPLAY_TAG(Player_Event_GuardReaction, "Player.Event.GuardReaction");
+	UE_DEFINE_GAMEPLAY_TAG(Player_Event_ParryReaction, "Player.Event.ParryReaction");
+	UE_DEFINE_GAMEPLAY_TAG(Player_Event_ParryEnd, "Player.Event.ParryEnd");
 }

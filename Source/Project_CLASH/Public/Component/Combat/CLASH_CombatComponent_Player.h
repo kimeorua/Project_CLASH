@@ -7,6 +7,8 @@
 
 #include "CLASH_CombatComponent_Player.generated.h"
 
+class UCLASH_AnimInstance_Player;
+
 UCLASS()
 class PROJECT_CLASH_API UCLASH_CombatComponent_Player : public UCLASH_CombatComponent
 {
@@ -22,6 +24,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void GuardReactionActivate(bool bIsGuardReaction);
 
+	UFUNCTION(BlueprintCallable)
+	void ParryReactionActivate(bool bIsParryReaction);
+
 	virtual void HitCheack(AActor* Instigator) override;
 
 protected:
@@ -29,4 +34,7 @@ protected:
 
 private:
 	bool CheckAngle(AActor* Instigator);
+
+	UPROPERTY()
+	TObjectPtr<UCLASH_AnimInstance_Player> PlayerAnimInst;
 };

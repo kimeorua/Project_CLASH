@@ -24,24 +24,20 @@ void UCLASH_CombatComponent_Player::TickComponent(float DeltaTime, ELevelTick Ti
 
 void UCLASH_CombatComponent_Player::GuardMode(bool bIsGuard)
 {
-	if (ACharacter* OwnerChar = Cast<ACharacter>(GetOwner()))
-	{
-		if (UCLASH_AnimInstance_Player* AnimInst = Cast<UCLASH_AnimInstance_Player>(OwnerChar->GetMesh()->GetAnimInstance()))
-		{
-			AnimInst->SettingGuardAnim(bIsGuard);
-		}
-	}
+    if (!PlayerAnimInst) { return; }
+    PlayerAnimInst->SettingGuardAnim(bIsGuard);
 }
 
 void UCLASH_CombatComponent_Player::GuardReactionActivate(bool bIsGuardReaction)
 {
-    if (ACharacter* OwnerChar = Cast<ACharacter>(GetOwner()))
-    {
-        if (UCLASH_AnimInstance_Player* AnimInst = Cast<UCLASH_AnimInstance_Player>(OwnerChar->GetMesh()->GetAnimInstance()))
-        {
-            AnimInst->SettingGuardReactionAnim(bIsGuardReaction);
-        }
-    }
+    if (!PlayerAnimInst) { return; }
+    PlayerAnimInst->SettingGuardReactionAnim(bIsGuardReaction);
+}
+
+void UCLASH_CombatComponent_Player::ParryReactionActivate(bool bIsParryReaction)
+{
+    if (!PlayerAnimInst) { return; }
+    PlayerAnimInst->SettingParryReactionAnim(bIsParryReaction);
 }
 
 void UCLASH_CombatComponent_Player::HitCheack(AActor* Instigator)
@@ -56,22 +52,20 @@ void UCLASH_CombatComponent_Player::HitCheack(AActor* Instigator)
         return;
     }
 
+    FGameplayEventData Data;
+    Data.Instigator = Instigator;
+    Data.Target = GetOwner();
+
     if (CheckAngle(Instigator))
     {
         if (bIsParrying)
         {
-            DebugHelper::Print("Parry Success!");
-            // TODO: 패링 Event 작동
+            UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(GetOwner(), ClashGameplayTags::Player_Event_ParryReaction, Data);
+            DebugHelper::Print("Parry!!!");
         }
 
         else if (bIsGuarding)
         {
-            DebugHelper::Print("Guard Success!");
-            FGameplayEventData Data;
-            Data.Instigator = Instigator;
-            Data.Target = GetOwner();
-            Data.EventTag = ClashGameplayTags::Player_Event_GuardReaction;
-
             UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(GetOwner(), ClashGameplayTags::Player_Event_GuardReaction, Data);
         }
     }
@@ -84,6 +78,14 @@ void UCLASH_CombatComponent_Player::HitCheack(AActor* Instigator)
 void UCLASH_CombatComponent_Player::BeginPlay()
 {
 	Super::BeginPlay();
+
+    if (!PlayerAnimInst)
+    {
+        if (ACharacter* OwnerChar = Cast<ACharacter>(GetOwner()))
+        {
+            PlayerAnimInst = Cast<UCLASH_AnimInstance_Player>(OwnerChar->GetMesh()->GetAnimInstance());
+        }
+    }
 }
 
 bool UCLASH_CombatComponent_Player::CheckAngle(AActor* Instigator)
