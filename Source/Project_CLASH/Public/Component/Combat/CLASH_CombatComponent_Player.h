@@ -24,9 +24,6 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void GuardReactionActivate(bool bIsGuardReaction);
 
-	UFUNCTION(BlueprintCallable)
-	void ParryReactionActivate(bool bIsParryReaction);
-
 	virtual void HitCheack(AActor* Instigator) override;
 
 protected:

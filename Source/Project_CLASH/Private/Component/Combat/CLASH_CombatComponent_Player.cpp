@@ -34,12 +34,6 @@ void UCLASH_CombatComponent_Player::GuardReactionActivate(bool bIsGuardReaction)
     PlayerAnimInst->SettingGuardReactionAnim(bIsGuardReaction);
 }
 
-void UCLASH_CombatComponent_Player::ParryReactionActivate(bool bIsParryReaction)
-{
-    if (!PlayerAnimInst) { return; }
-    PlayerAnimInst->SettingParryReactionAnim(bIsParryReaction);
-}
-
 void UCLASH_CombatComponent_Player::HitCheack(AActor* Instigator)
 {
     bool bIsParrying = UCLASH_BlueprintFunctionLibrary::NativeDoseActorHaveTag(GetOwner(), ClashGameplayTags::Player_State_ParryAbale);
