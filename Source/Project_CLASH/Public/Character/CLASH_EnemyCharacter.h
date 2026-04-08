@@ -7,6 +7,7 @@
 #include "CLASH_EnemyCharacter.generated.h"
 
 class UCLASH_CombatComponent_Enemy;
+class UCLASH_UIComponent_Enemy;
 
 UCLASS()
 class PROJECT_CLASH_API ACLASH_EnemyCharacter : public ACLASH_BaseCharacter
@@ -21,6 +22,7 @@ public:
 
 protected:
 	virtual void BeginPlay() override;
+	virtual void Tick(float DeltaTime) override;
 	virtual void PossessedBy(AController* NewController) override;
 
 /* =========================
@@ -42,4 +44,19 @@ public:
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Combat", meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<UCLASH_CombatComponent_Enemy> EnemyCombatComponent;
+
+/* =========================
+ * UIComponent
+* ========================= */
+private:
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "UI", meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<UCLASH_UIComponent_Enemy> EnemyUIComponent;
+
+	bool bAlreadyCreateHUD = false;
+
+	bool Test_CreateUITrace();
+
+public:
+	UFUNCTION(BlueprintCallable)
+	void CreateEnemyHUD();
 };
