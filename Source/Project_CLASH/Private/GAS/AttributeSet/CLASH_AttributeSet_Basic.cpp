@@ -3,6 +3,8 @@
 
 #include "GAS/AttributeSet/CLASH_AttributeSet_Basic.h"
 #include "GameplayEffectExtension.h"
+#include "AbilitySystemBlueprintLibrary.h"
+#include "CLASH_GameplayTag.h"
 
 const float UCLASH_AttributeSet_Basic::ABSOLUTE_MAX_WILLCOUNT = 5.0f;
 
@@ -41,4 +43,18 @@ void UCLASH_AttributeSet_Basic::PostGameplayEffectExecute(const FGameplayEffectM
 {
 	Super::PostGameplayEffectExecute(Data);
 	FGameplayAttribute ModifiedAttribute = Data.EvaluatedData.Attribute;
+
+	FGameplayEffectContextHandle Context = Data.EffectSpec.GetContext();
+	AActor* TargetActor = Data.Target.GetAvatarActor();
+
+
+	if (ModifiedAttribute == GetFocusAttribute())
+	{
+		SetFocus(FMath::Clamp(GetFocus(), 0.f, GetMaxFocus()));
+
+		if (GetFocus() <= 0.f)
+		{
+			UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(TargetActor, ClashGameplayTags::Shared_Event_Groggy, FGameplayEventData());
+		}
+	}
 }

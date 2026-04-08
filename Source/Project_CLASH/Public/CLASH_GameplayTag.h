@@ -48,4 +48,8 @@ namespace ClashGameplayTags
 	PROJECT_CLASH_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Player_Event_ParryReaction);
 	PROJECT_CLASH_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Player_Event_ParryEnd);
 	// Player Ability Tag //
+
+	// Shared Tag //
+	PROJECT_CLASH_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Shared_Event_Groggy);
+	PROJECT_CLASH_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Shared_State_Groggy);
 }

@@ -41,4 +41,7 @@ namespace ClashGameplayTags
 	UE_DEFINE_GAMEPLAY_TAG(Player_Event_GuardReaction, "Player.Event.GuardReaction");
 	UE_DEFINE_GAMEPLAY_TAG(Player_Event_ParryReaction, "Player.Event.ParryReaction");
 	UE_DEFINE_GAMEPLAY_TAG(Player_Event_ParryEnd, "Player.Event.ParryEnd");
+
+	UE_DEFINE_GAMEPLAY_TAG(Shared_Event_Groggy, "Shared.Event.Groggy");
+	UE_DEFINE_GAMEPLAY_TAG(Shared_State_Groggy, "Shared.State.Groggy");
 }
