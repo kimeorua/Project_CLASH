@@ -7,6 +7,7 @@
 #include "Components/UniformGridSlot.h"
 
 #include "UI/CLASH_WillBeadWidget.h"
+#include "UI/CLASH_ProgressBar.h"
 
 void UCLASH_HUD_Base::NativeConstruct()
 {
@@ -15,9 +16,10 @@ void UCLASH_HUD_Base::NativeConstruct()
 
 void UCLASH_HUD_Base::UpdateFoucsBar(float Percent)
 {
-	if (!FocusBar) { return; }
+	if (!FocusBar || !Test_ProgressBar) { return; }
 
 	FocusBar->SetPercent(Percent);
+	Test_ProgressBar->UpdateBar(Percent);
 }
 
 void UCLASH_HUD_Base::CreateWillBeads(float WillCount)

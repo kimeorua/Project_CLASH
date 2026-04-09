@@ -6,6 +6,8 @@
 #include "GAS/AttributeSet/CLASH_AttributeSet_Basic.h"
 #include "Character/CLASH_BaseCharacter.h"
 
+#include "DebugHelper.h"
+
 
 UCLASH_UIComponent_Base::UCLASH_UIComponent_Base()
 {

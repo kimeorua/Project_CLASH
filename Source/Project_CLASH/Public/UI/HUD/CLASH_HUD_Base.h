@@ -10,6 +10,7 @@ class UProgressBar;
 class UImage;
 class UUniformGridPanel;
 class UCLASH_WillBeadWidget;
+class UCLASH_ProgressBar;
 
 UCLASS()
 class PROJECT_CLASH_API UCLASH_HUD_Base : public UUserWidget
@@ -24,6 +25,10 @@ protected:
 
 	UPROPERTY(BlueprintReadOnly, Category = "HUD|Widgets", meta = (BindWidget, AllowPrivateAccess = "true"))
 	TObjectPtr<UImage> CharacterPortrait;
+
+	UPROPERTY(BlueprintReadOnly, Category = "HUD|Widgets", meta = (BindWidget, AllowPrivateAccess = "true"))
+	TObjectPtr<UCLASH_ProgressBar> Test_ProgressBar;
+	
 
 	UPROPERTY(BlueprintReadOnly, Category = "HUD|Widgets", meta = (BindWidget, AllowPrivateAccess = "true"))
 	TObjectPtr<UUniformGridPanel>WillBaedsPanel;
