@@ -7,6 +7,7 @@
 #include "GAS/CLASH_AbilitySystemComponent.h"
 #include "CLASH_AttributeSet_Basic.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnUpdateFoucsUI, float, Percent);
 
 #define ATTRIBUTE_ACCESSORS(ClassName, PropertyName) \
 GAMEPLAYATTRIBUTE_PROPERTY_GETTER(ClassName, PropertyName) \
@@ -47,4 +48,6 @@ public:
 	ATTRIBUTE_ACCESSORS(UCLASH_AttributeSet_Basic, WillCount);
 	ATTRIBUTE_ACCESSORS(UCLASH_AttributeSet_Basic, MaxWillCount);
 	ATTRIBUTE_ACCESSORS(UCLASH_AttributeSet_Basic, AttackPower);
+
+	FOnUpdateFoucsUI OnUpdateFoucsUI;
 };

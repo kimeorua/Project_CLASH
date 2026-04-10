@@ -24,4 +24,12 @@ void UCLASH_AttributeSet_Player::PostGameplayEffectExecute(const FGameplayEffect
 {
 	Super::PostGameplayEffectExecute(Data);
 	FGameplayAttribute ModifiedAttribute = Data.EvaluatedData.Attribute;
+
+	FGameplayEffectContextHandle Context = Data.EffectSpec.GetContext();
+	AActor* TargetActor = Data.Target.GetAvatarActor();
+
+	if (ModifiedAttribute == GetAwakeningAttribute())
+	{
+		OnUpdateAwakeningUI.Broadcast(GetAwakening() / ABSOLUTE_MAX_AWAKENING);
+	}
 }

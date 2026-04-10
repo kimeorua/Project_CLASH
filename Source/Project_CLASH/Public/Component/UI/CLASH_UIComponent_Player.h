@@ -26,5 +26,5 @@ protected:
 	virtual void BindUpdage(UAbilitySystemComponent* InASC) override;
 
 private:
-	void OnCurrentAwakeningChanged(const FOnAttributeChangeData& Data);
+	void OnCurrentAwakeningChanged(float Percent);
 };

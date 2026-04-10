@@ -32,8 +32,6 @@ void UCLASH_ProgressBar::NativeTick(const FGeometry& MyGeometry, float InDeltaTi
 
 void UCLASH_ProgressBar::UpdateBar(float Percent)
 {
-	if (FMath::IsNearlyEqual(CurrentValue, Percent, 0.0001f)) { return; }
-
 	if (CurrentValue <= 0.0f) { return; }
 
 	CahcedValue = CurrentValue;

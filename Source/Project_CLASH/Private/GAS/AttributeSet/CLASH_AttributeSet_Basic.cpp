@@ -6,8 +6,6 @@
 #include "AbilitySystemBlueprintLibrary.h"
 #include "CLASH_GameplayTag.h"
 
-#include "DebugHelper.h"
-
 const float UCLASH_AttributeSet_Basic::ABSOLUTE_MAX_WILLCOUNT = 5.0f;
 
 UCLASH_AttributeSet_Basic::UCLASH_AttributeSet_Basic()
@@ -53,6 +51,8 @@ void UCLASH_AttributeSet_Basic::PostGameplayEffectExecute(const FGameplayEffectM
 	if (ModifiedAttribute == GetFocusAttribute())
 	{
 		SetFocus(FMath::Clamp(GetFocus(), 0.f, GetMaxFocus()));
+
+		OnUpdateFoucsUI.Broadcast(GetFocus() / GetMaxFocus());
 
 		if (GetFocus() <= 0.f)
 		{

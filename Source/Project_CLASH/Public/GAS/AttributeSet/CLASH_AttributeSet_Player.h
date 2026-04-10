@@ -7,6 +7,8 @@
 #include "GAS/CLASH_AbilitySystemComponent.h"
 #include "CLASH_AttributeSet_Player.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnUpdateAwakeningUI, float, Percent);
+
 #define ATTRIBUTE_ACCESSORS(ClassName, PropertyName) \
 GAMEPLAYATTRIBUTE_PROPERTY_GETTER(ClassName, PropertyName) \
 GAMEPLAYATTRIBUTE_VALUE_GETTER(PropertyName) \
@@ -30,4 +32,6 @@ public:
 	virtual void PostGameplayEffectExecute(const struct FGameplayEffectModCallbackData& Data)override;
 
 	ATTRIBUTE_ACCESSORS(UCLASH_AttributeSet_Player, Awakening);
+
+	FOnUpdateAwakeningUI OnUpdateAwakeningUI;
 };

@@ -42,20 +42,23 @@ void UCLASH_UIComponent_Player::SettingInitValue()
 {
 	Super::SettingInitValue();
 
-	FOnAttributeChangeData InitAwakeningData;
-	InitAwakeningData.NewValue = ASC->GetNumericAttribute(UCLASH_AttributeSet_Player::GetAwakeningAttribute());
-	OnCurrentAwakeningChanged(InitAwakeningData);
+	const UCLASH_AttributeSet_Player* CLASHAttribute_Base = ASC->GetSet<UCLASH_AttributeSet_Player>();
+
+	float Max = UCLASH_AttributeSet_Player::ABSOLUTE_MAX_AWAKENING;
+	float Percent = CLASHAttribute_Base->GetAwakening() / Max;
+
+	OnCurrentAwakeningChanged(Percent);
 }
 
 void UCLASH_UIComponent_Player::BindUpdage(UAbilitySystemComponent* InASC)
 {
 	Super::BindUpdage(InASC);
-	InASC->GetGameplayAttributeValueChangeDelegate(UCLASH_AttributeSet_Player::GetAwakeningAttribute()).AddUObject(this, &UCLASH_UIComponent_Player::OnCurrentAwakeningChanged);
+
+	UCLASH_AttributeSet_Player* CLASHAttribute_Player = const_cast<UCLASH_AttributeSet_Player*>(InASC->GetSet<UCLASH_AttributeSet_Player>());
+	CLASHAttribute_Player->OnUpdateAwakeningUI.AddDynamic(this, &UCLASH_UIComponent_Player::OnCurrentAwakeningChanged);
 }
 
-void UCLASH_UIComponent_Player::OnCurrentAwakeningChanged(const FOnAttributeChangeData& Data)
+void UCLASH_UIComponent_Player::OnCurrentAwakeningChanged(float Percent)
 {
-	float Max = UCLASH_AttributeSet_Player::ABSOLUTE_MAX_AWAKENING;
-	float Percent = Data.NewValue / Max;
 	OnAwakeningBarChanged.Broadcast(Percent);
 }

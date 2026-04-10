@@ -25,9 +25,6 @@ class PROJECT_CLASH_API UCLASH_UIComponent_Base : public UActorComponent
 public:	
 	UCLASH_UIComponent_Base();
 
-	FOnFoucsBarChanged OnFoucsBarChanged;
-	FOnWiilCountCreated OnWiilCountCreated;
-
 protected:
 	virtual void BeginPlay() override;
 
@@ -42,11 +39,16 @@ protected:
 	UPROPERTY()
 	TObjectPtr <UAbilitySystemComponent>ASC;
 
-	void OnCurrentFocusChanged(const FOnAttributeChangeData& Data);
+	UFUNCTION()
+	void OnCurrentFocusChanged(float Percent);
+
 	virtual void CreateHUD();
 	virtual void SettingInitValue();
 	virtual void BindUpdage(UAbilitySystemComponent* InASC);
 
 public:
+	FOnFoucsBarChanged OnFoucsBarChanged;
+	FOnWiilCountCreated OnWiilCountCreated;
+
 	void InitUIComponent(ACLASH_BaseCharacter* ClashCharacter);
 };
