@@ -23,7 +23,7 @@ protected:
 	virtual void BeginPlay() override;
 	virtual void CreateHUD() override;
 	virtual void SettingInitValue() override;
-	virtual void BindUpdage(UAbilitySystemComponent* InASC) override;
+	virtual void BindUpdate(UAbilitySystemComponent* InASC) override;
 
 private:
 	void OnCurrentAwakeningChanged(float Percent);

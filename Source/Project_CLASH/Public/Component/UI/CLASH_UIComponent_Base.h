@@ -44,7 +44,7 @@ protected:
 
 	virtual void CreateHUD();
 	virtual void SettingInitValue();
-	virtual void BindUpdage(UAbilitySystemComponent* InASC);
+	virtual void BindUpdate(UAbilitySystemComponent* InASC);
 
 public:
 	FOnFoucsBarChanged OnFoucsBarChanged;

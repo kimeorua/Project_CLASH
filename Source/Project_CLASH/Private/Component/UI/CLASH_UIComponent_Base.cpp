@@ -38,7 +38,7 @@ void UCLASH_UIComponent_Base::SettingInitValue()
     OnWiilCountCreated.Broadcast(WillCount);
 }
 
-void UCLASH_UIComponent_Base::BindUpdage(UAbilitySystemComponent* InASC)
+void UCLASH_UIComponent_Base::BindUpdate(UAbilitySystemComponent* InASC)
 {
     if (!InASC) { return; }
     UCLASH_AttributeSet_Basic* CLASHAttribute_Base = const_cast<UCLASH_AttributeSet_Basic*>(InASC->GetSet<UCLASH_AttributeSet_Basic>());

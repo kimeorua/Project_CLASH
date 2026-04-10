@@ -50,9 +50,9 @@ void UCLASH_UIComponent_Player::SettingInitValue()
 	OnCurrentAwakeningChanged(Percent);
 }
 
-void UCLASH_UIComponent_Player::BindUpdage(UAbilitySystemComponent* InASC)
+void UCLASH_UIComponent_Player::BindUpdate(UAbilitySystemComponent* InASC)
 {
-	Super::BindUpdage(InASC);
+	Super::BindUpdate(InASC);
 
 	UCLASH_AttributeSet_Player* CLASHAttribute_Player = const_cast<UCLASH_AttributeSet_Player*>(InASC->GetSet<UCLASH_AttributeSet_Player>());
 	CLASHAttribute_Player->OnUpdateAwakeningUI.AddDynamic(this, &UCLASH_UIComponent_Player::OnCurrentAwakeningChanged);
