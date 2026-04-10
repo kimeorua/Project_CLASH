@@ -54,7 +54,7 @@ void UCLASH_UIComponent_Base::InitUIComponent(ACLASH_BaseCharacter* ClashCharact
     if (IAbilitySystemInterface* ASInterface = Cast<IAbilitySystemInterface>(ClashCharacter))
     {
         ASC = ASInterface->GetAbilitySystemComponent();
-        BindUpdage(ASC);
+        BindUpdate(ASC);
     }
     SettingInitValue();
 }
