@@ -34,7 +34,6 @@ void UCLASH_UIComponent_Base::CreateHUD()
 
 void UCLASH_UIComponent_Base::SettingInitValue()
 {
-    if (!HUD || !ASC) { return; }
 
     FOnAttributeChangeData InitFocusData;
     InitFocusData.NewValue = ASC->GetNumericAttribute(UCLASH_AttributeSet_Basic::GetFocusAttribute());
