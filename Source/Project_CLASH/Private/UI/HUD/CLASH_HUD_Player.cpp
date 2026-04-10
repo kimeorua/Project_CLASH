@@ -2,7 +2,9 @@
 
 
 #include "UI/HUD/CLASH_HUD_Player.h"
-#include "Components/ProgressBar.h"
+
+#include "UI/CLASH_ProgressBar.h"
+#include "Component/UI/CLASH_UIComponent_Player.h"
 
 void UCLASH_HUD_Player::NativeConstruct()
 {
@@ -13,5 +15,11 @@ void UCLASH_HUD_Player::UpdateAwakeningGauge(float Percent)
 {
 	if (!AwakeningGauge) { return; }
 
-	AwakeningGauge->SetPercent(Percent);
+	AwakeningGauge->UpdateBar(Percent);
+}
+
+void UCLASH_HUD_Player::BindToPlayerUIComponent(UCLASH_UIComponent_Player* TargetComponent)
+{
+	if (!TargetComponent) { return; }
+	TargetComponent->OnAwakeningBarChanged.AddDynamic(this, &UCLASH_HUD_Player::UpdateAwakeningGauge);
 }

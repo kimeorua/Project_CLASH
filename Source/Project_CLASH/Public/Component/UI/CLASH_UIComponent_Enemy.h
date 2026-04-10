@@ -6,8 +6,6 @@
 #include "Component/UI/CLASH_UIComponent_Base.h"
 #include "CLASH_UIComponent_Enemy.generated.h"
 
-class UCLASH_HUD_Enemy;
-
 UCLASS()
 class PROJECT_CLASH_API UCLASH_UIComponent_Enemy : public UCLASH_UIComponent_Base
 {
@@ -19,7 +17,4 @@ public:
 protected:
 	virtual void BeginPlay() override;
 	virtual void CreateHUD() override;
-
-private:
-	TObjectPtr<UCLASH_HUD_Enemy> HUD_Enemy;
 };

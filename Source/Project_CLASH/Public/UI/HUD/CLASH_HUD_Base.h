@@ -6,11 +6,11 @@
 #include "Blueprint/UserWidget.h"
 #include "CLASH_HUD_Base.generated.h"
 
-class UProgressBar;
 class UImage;
 class UUniformGridPanel;
 class UCLASH_WillBeadWidget;
 class UCLASH_ProgressBar;
+class UCLASH_UIComponent_Base;
 
 UCLASS()
 class PROJECT_CLASH_API UCLASH_HUD_Base : public UUserWidget
@@ -21,14 +21,10 @@ protected:
 	virtual void NativeConstruct() override;
 
 	UPROPERTY(BlueprintReadOnly, Category = "HUD|Widgets", meta = (BindWidget, AllowPrivateAccess = "true"))
-	TObjectPtr<UProgressBar> FocusBar;
+	TObjectPtr<UCLASH_ProgressBar> FocusBar;
 
 	UPROPERTY(BlueprintReadOnly, Category = "HUD|Widgets", meta = (BindWidget, AllowPrivateAccess = "true"))
 	TObjectPtr<UImage> CharacterPortrait;
-
-	UPROPERTY(BlueprintReadOnly, Category = "HUD|Widgets", meta = (BindWidget, AllowPrivateAccess = "true"))
-	TObjectPtr<UCLASH_ProgressBar> Test_ProgressBar;
-	
 
 	UPROPERTY(BlueprintReadOnly, Category = "HUD|Widgets", meta = (BindWidget, AllowPrivateAccess = "true"))
 	TObjectPtr<UUniformGridPanel>WillBaedsPanel;
@@ -42,4 +38,6 @@ public:
 
 	UFUNCTION()
 	void CreateWillBeads(float WillCount);
+
+	void BindToBaseUIComponent(UCLASH_UIComponent_Base* TargetComponent);
 };

@@ -6,6 +6,8 @@
 #include "Component/UI/CLASH_UIComponent_Base.h"
 #include "CLASH_UIComponent_Player.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnAwakeningBarChanged, float, Percent);
+
 class UCLASH_HUD_Player;
 
 UCLASS()
@@ -15,6 +17,7 @@ class PROJECT_CLASH_API UCLASH_UIComponent_Player : public UCLASH_UIComponent_Ba
 
 public:
 	UCLASH_UIComponent_Player();
+	FOnAwakeningBarChanged OnAwakeningBarChanged;
 
 protected:
 	virtual void BeginPlay() override;
@@ -23,8 +26,5 @@ protected:
 	virtual void BindUpdage(UAbilitySystemComponent* InASC) override;
 
 private:
-	virtual void OnCurrentAwakeningChanged(const FOnAttributeChangeData& Data);
-
-	UPROPERTY()
-	TObjectPtr<UCLASH_HUD_Player> HUD_Player;
+	void OnCurrentAwakeningChanged(const FOnAttributeChangeData& Data);
 };

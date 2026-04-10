@@ -6,8 +6,6 @@
 #include "GAS/AttributeSet/CLASH_AttributeSet_Basic.h"
 #include "Character/CLASH_BaseCharacter.h"
 
-#include "DebugHelper.h"
-
 
 UCLASH_UIComponent_Base::UCLASH_UIComponent_Base()
 {
@@ -20,27 +18,30 @@ void UCLASH_UIComponent_Base::BeginPlay()
 
 void UCLASH_UIComponent_Base::OnCurrentFocusChanged(const FOnAttributeChangeData& Data)
 {
-    if (!HUD || !ASC) { return; }
+    if (!ASC) { return; }
 
     const UCLASH_AttributeSet_Basic* CLASHAttribute_Base = ASC->GetSet<UCLASH_AttributeSet_Basic>();
-    float Percent = CLASHAttribute_Base->GetFocus() / CLASHAttribute_Base->GetMaxFocus();
-    HUD->UpdateFoucsBar(Percent);
+    float Max = CLASHAttribute_Base->GetMaxFocus();
+    float Current = Data.NewValue;
+
+    if (Max <= 0) { return; }
+
+    const float Percent = Current / Max;
+    OnFoucsBarChanged.Broadcast(Percent);
 }
 
 void UCLASH_UIComponent_Base::CreateHUD()
 {
-    
 }
 
 void UCLASH_UIComponent_Base::SettingInitValue()
 {
-
     FOnAttributeChangeData InitFocusData;
     InitFocusData.NewValue = ASC->GetNumericAttribute(UCLASH_AttributeSet_Basic::GetFocusAttribute());
     OnCurrentFocusChanged(InitFocusData);
 
     float WillCount = ASC->GetNumericAttribute(UCLASH_AttributeSet_Basic::GetMaxWillCountAttribute());
-    HUD->CreateWillBeads(WillCount);
+    OnWiilCountCreated.Broadcast(WillCount);
 }
 
 void UCLASH_UIComponent_Base::BindUpdage(UAbilitySystemComponent* InASC)
@@ -54,8 +55,6 @@ void UCLASH_UIComponent_Base::InitUIComponent(ACLASH_BaseCharacter* ClashCharact
 	if (!ClashCharacter) { return; }
 
     CreateHUD();
-
-    if (!HUD) { return; }
 
     if (IAbilitySystemInterface* ASInterface = Cast<IAbilitySystemInterface>(ClashCharacter))
     {

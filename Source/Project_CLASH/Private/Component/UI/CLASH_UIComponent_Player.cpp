@@ -8,6 +8,8 @@
 #include "GameFramework/Character.h"
 #include "GAS/AttributeSet/CLASH_AttributeSet_Player.h"
 
+#include "DebugHelper.h"
+
 UCLASH_UIComponent_Player::UCLASH_UIComponent_Player()
 {
 }
@@ -20,20 +22,25 @@ void UCLASH_UIComponent_Player::BeginPlay()
 void UCLASH_UIComponent_Player::CreateHUD()
 {
 	APlayerController* PC = Cast<APlayerController>(Cast<ACharacter>(GetOwner())->GetController());
-	HUD = Cast< UCLASH_HUD_Base>(CreateWidget<UUserWidget>(PC, HUDClass));
 
-	if (!HUD) { return; }
+	if (!PC) { return; }
 
-	HUD_Player = Cast<UCLASH_HUD_Player>(HUD);
+	UUserWidget* HUD = CreateWidget<UUserWidget>(PC, HUDClass);
 
-	HUD->AddToViewport();
+	if (!HUD)	{ return; }
+
+	UCLASH_HUD_Player* HUD_Player = Cast<UCLASH_HUD_Player>(HUD);
+
+	if (!HUD_Player) { return;}
+
+	HUD_Player->BindToBaseUIComponent(this);
+	HUD_Player->BindToPlayerUIComponent(this);
+	HUD_Player->AddToViewport();
 }
 
 void UCLASH_UIComponent_Player::SettingInitValue()
 {
 	Super::SettingInitValue();
-
-	if (!HUD || !ASC) { return; }
 
 	FOnAttributeChangeData InitAwakeningData;
 	InitAwakeningData.NewValue = ASC->GetNumericAttribute(UCLASH_AttributeSet_Player::GetAwakeningAttribute());
@@ -48,10 +55,7 @@ void UCLASH_UIComponent_Player::BindUpdage(UAbilitySystemComponent* InASC)
 
 void UCLASH_UIComponent_Player::OnCurrentAwakeningChanged(const FOnAttributeChangeData& Data)
 {
-	if (!HUD || !ASC || !HUD_Player) { return; }
-
 	float Max = UCLASH_AttributeSet_Player::ABSOLUTE_MAX_AWAKENING;
 	float Percent = Data.NewValue / Max;
-
-	HUD_Player->UpdateAwakeningGauge(Percent);
+	OnAwakeningBarChanged.Broadcast(Percent);
 }

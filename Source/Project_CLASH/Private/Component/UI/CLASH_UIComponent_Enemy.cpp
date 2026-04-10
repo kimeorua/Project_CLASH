@@ -6,8 +6,6 @@
 
 #include "Kismet/GameplayStatics.h"
 
-#include "DebugHelper.h"
-
 UCLASH_UIComponent_Enemy::UCLASH_UIComponent_Enemy()
 {
 }
@@ -27,10 +25,14 @@ void UCLASH_UIComponent_Enemy::CreateHUD()
 
 	if (!PC) { return; }
 
-	HUD = Cast< UCLASH_HUD_Base>(CreateWidget<UUserWidget>(PC, HUDClass));
+	UUserWidget* HUD = CreateWidget<UUserWidget>(PC, HUDClass);
 
 	if (!HUD) { return; }
-	HUD_Enemy = Cast<UCLASH_HUD_Enemy>(HUD);
 
-	HUD->AddToViewport();
+	UCLASH_HUD_Enemy* HUD_Enemy = Cast<UCLASH_HUD_Enemy>(HUD);
+
+	if (!HUD_Enemy) { return; }
+	HUD_Enemy->BindToBaseUIComponent(this);
+
+	HUD_Enemy->AddToViewport();
 }

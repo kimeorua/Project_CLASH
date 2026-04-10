@@ -6,7 +6,8 @@
 #include "UI/HUD/CLASH_HUD_Base.h"
 #include "CLASH_HUD_Player.generated.h"
 
-class UProgressBar;
+class UCLASH_ProgressBar;
+class UCLASH_UIComponent_Player;
 
 UCLASS()
 class PROJECT_CLASH_API UCLASH_HUD_Player : public UCLASH_HUD_Base
@@ -17,9 +18,11 @@ protected:
 	virtual void NativeConstruct() override;
 
 	UPROPERTY(BlueprintReadOnly, Category = "HUD|Widgets", meta = (BindWidget, AllowPrivateAccess = "true"))
-	TObjectPtr<UProgressBar> AwakeningGauge;
+	TObjectPtr<UCLASH_ProgressBar> AwakeningGauge;
 
 public:
 	UFUNCTION()
 	void UpdateAwakeningGauge(float Percent);
+
+	void BindToPlayerUIComponent(UCLASH_UIComponent_Player* TargetComponent);
 };

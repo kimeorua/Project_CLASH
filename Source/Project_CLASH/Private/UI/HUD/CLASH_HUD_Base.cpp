@@ -2,12 +2,12 @@
 
 
 #include "UI/HUD/CLASH_HUD_Base.h"
-#include "Components/ProgressBar.h"
 #include "Components/UniformGridPanel.h"
 #include "Components/UniformGridSlot.h"
 
 #include "UI/CLASH_WillBeadWidget.h"
 #include "UI/CLASH_ProgressBar.h"
+#include "Component/UI/CLASH_UIComponent_Base.h"
 
 void UCLASH_HUD_Base::NativeConstruct()
 {
@@ -16,10 +16,9 @@ void UCLASH_HUD_Base::NativeConstruct()
 
 void UCLASH_HUD_Base::UpdateFoucsBar(float Percent)
 {
-	if (!FocusBar || !Test_ProgressBar) { return; }
+	if (!FocusBar) { return; }
 
-	FocusBar->SetPercent(Percent);
-	Test_ProgressBar->UpdateBar(Percent);
+	FocusBar->UpdateBar(Percent);
 }
 
 void UCLASH_HUD_Base::CreateWillBeads(float WillCount)
@@ -41,4 +40,12 @@ void UCLASH_HUD_Base::CreateWillBeads(float WillCount)
 			GridSlot->SetVerticalAlignment(EVerticalAlignment::VAlign_Center);
 		}
 	}
+}
+
+void UCLASH_HUD_Base::BindToBaseUIComponent(UCLASH_UIComponent_Base* TargetComponent)
+{
+	if (!TargetComponent) { return; }
+
+	TargetComponent->OnFoucsBarChanged.AddDynamic(this, &UCLASH_HUD_Base::UpdateFoucsBar);
+	TargetComponent->OnWiilCountCreated.AddDynamic(this, &UCLASH_HUD_Base::CreateWillBeads);
 }
