@@ -8,6 +8,7 @@ namespace ClashGameplayTags
 	UE_DEFINE_GAMEPLAY_TAG(Input_Attack_B, "Input.Attack.B");
 	UE_DEFINE_GAMEPLAY_TAG(Input_LockOn, "Input.LockOn");
 	UE_DEFINE_GAMEPLAY_TAG(Input_Guard, "Input.Guard");
+	UE_DEFINE_GAMEPLAY_TAG(Input_Dodge, "Input.Dodge");
 
 	UE_DEFINE_GAMEPLAY_TAG(Player_Ability_Combo_X_1, "Player.Ability.Combo.X.1");
 	UE_DEFINE_GAMEPLAY_TAG(Player_Ability_Combo_X_2, "Player.Ability.Combo.X.2");
@@ -21,6 +22,7 @@ namespace ClashGameplayTags
 	UE_DEFINE_GAMEPLAY_TAG(Player_Ability_Combo_Derived_X, "Player.Ability.Combo.Derived.X");
 	UE_DEFINE_GAMEPLAY_TAG(Player_Ability_LockOn, "Player.Ability.LockOn");
 	UE_DEFINE_GAMEPLAY_TAG(Player_Ability_Guard, "Player.Ability.Guard");
+	UE_DEFINE_GAMEPLAY_TAG(Player_Ability_Dodge, "Player.Ability.Dodge");
 
 	UE_DEFINE_GAMEPLAY_TAG(Player_State_ReadyCombo_X_2, "Player.State.ReadyCombo.X.2");
 	UE_DEFINE_GAMEPLAY_TAG(Player_State_ReadyCombo_X_3, "Player.State.ReadyCombo.X.3");
@@ -34,6 +36,8 @@ namespace ClashGameplayTags
 	UE_DEFINE_GAMEPLAY_TAG(Player_State_UseGuard, "Player.State.UseGuard");
 	UE_DEFINE_GAMEPLAY_TAG(Player_State_ParryAbale, "Player.State.ParryAbale");
 	UE_DEFINE_GAMEPLAY_TAG(Player_State_IsAttacking, "Player.State.IsAttacking");
+	UE_DEFINE_GAMEPLAY_TAG(Player_State_UseDodge, "Player.State.UseDodge");
+	UE_DEFINE_GAMEPLAY_TAG(Player_State_DodgeAbale, "Player.State.DodgeAbale");
 
 	UE_DEFINE_GAMEPLAY_TAG(Player_Event_ReadyToNextCombo, "Player.Event.ReadyToNextCombo");
 	UE_DEFINE_GAMEPLAY_TAG(Player_Event_EndCombo, "Player.Event.EndCombo");
@@ -41,7 +45,12 @@ namespace ClashGameplayTags
 	UE_DEFINE_GAMEPLAY_TAG(Player_Event_GuardReaction, "Player.Event.GuardReaction");
 	UE_DEFINE_GAMEPLAY_TAG(Player_Event_ParryReaction, "Player.Event.ParryReaction");
 	UE_DEFINE_GAMEPLAY_TAG(Player_Event_ParryEnd, "Player.Event.ParryEnd");
+	UE_DEFINE_GAMEPLAY_TAG(Player_Event_DodgeStart, "Player.Event.DodgeStart");
+	UE_DEFINE_GAMEPLAY_TAG(Player_Event_DodgeEnd, "Player.Event.DodgeEnd");
+	UE_DEFINE_GAMEPLAY_TAG(Shared_Event_DodgeReaction, "Player.Event.DodgeReaction");
 
 	UE_DEFINE_GAMEPLAY_TAG(Shared_Event_Groggy, "Shared.Event.Groggy");
+	UE_DEFINE_GAMEPLAY_TAG(Shared_Event_Hit, "Shared.Event.Hit");
+
 	UE_DEFINE_GAMEPLAY_TAG(Shared_State_Groggy, "Shared.State.Groggy");
 }

@@ -38,17 +38,27 @@ void UCLASH_CombatComponent_Player::HitCheack(AActor* Instigator)
 {
     bool bIsParrying = UCLASH_BlueprintFunctionLibrary::NativeDoseActorHaveTag(GetOwner(), ClashGameplayTags::Player_State_ParryAbale);
     bool bIsGuarding = UCLASH_BlueprintFunctionLibrary::NativeDoseActorHaveTag(GetOwner(), ClashGameplayTags::Player_State_UseGuard);
-
-    if (!bIsParrying && !bIsGuarding)
-    {
-        DebugHelper::Print("Hit!");
-        // TODO: 피격 로직 실행
-        return;
-    }
+    bool bIsDodge = UCLASH_BlueprintFunctionLibrary::NativeDoseActorHaveTag(GetOwner(), ClashGameplayTags::Player_State_DodgeAbale);
 
     FGameplayEventData Data;
     Data.Instigator = Instigator;
     Data.Target = GetOwner();
+
+    if (!bIsParrying && !bIsGuarding)
+    {
+        if (!bIsDodge)
+        {
+            DebugHelper::Print("Hit!");
+            UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(GetOwner(), ClashGameplayTags::Shared_Event_Hit, Data);
+            return;
+        }
+        else
+        {
+            DebugHelper::Print("Dodge!!");
+            UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(GetOwner(), ClashGameplayTags::Shared_Event_DodgeReaction, Data);
+            return;
+        }
+    }
 
     if (CheckAngle(Instigator))
     {

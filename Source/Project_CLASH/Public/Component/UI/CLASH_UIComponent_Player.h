@@ -26,5 +26,6 @@ protected:
 	virtual void BindUpdate(UAbilitySystemComponent* InASC) override;
 
 private:
+	UFUNCTION()
 	void OnCurrentAwakeningChanged(float Percent);
 };

@@ -31,7 +31,7 @@ struct FCLASH_AbilityBindInfo
 	FGameplayTag InputTag;
 
 	UPROPERTY(EditAnywhere, Category = "Ability")
-	EClashInputID InputID;
+	EClashInputID InputID = EClashInputID::None;
 };
 
 UCLASS()
