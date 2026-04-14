@@ -11,7 +11,7 @@ ACLASH_Weapon_Base::ACLASH_Weapon_Base()
 	WeaponMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("WeaponMesh"));
 	WeaponMesh->SetCollisionProfileName("NoCollision");
 
-	WeaponMesh->SetRenderCustomDepth(true);
+	WeaponMesh->SetRenderCustomDepth(false);
 }
 
 void ACLASH_Weapon_Base::BeginPlay()

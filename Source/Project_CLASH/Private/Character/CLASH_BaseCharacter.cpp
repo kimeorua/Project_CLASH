@@ -15,8 +15,6 @@ ACLASH_BaseCharacter::ACLASH_BaseCharacter()
 {
 	PrimaryActorTick.bCanEverTick = true;
 
-	GetMesh()->bRenderCustomDepth = true;
-
 	ClashASC = CreateDefaultSubobject<UCLASH_AbilitySystemComponent>(TEXT("ClashASC"));
 	BasicAttributeSet = CreateDefaultSubobject<UCLASH_AttributeSet_Basic>(TEXT("BasicAttributeSet"));
 	WeaponComponent = CreateDefaultSubobject<UCLASH_WeaponComponent>(TEXT("WeaponComponent"));
